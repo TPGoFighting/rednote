@@ -1,0 +1,1959 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TP的小红书 — 小鱼帮你刷的 20 篇 AI 好帖</title>
+  <meta name="description" content="TP的小红书：宫崎骏吉卜力水彩风 AI 探索手札，精选 20 篇小红书 AI 前沿好帖，配吕小鱼傲娇毒舌锐评与产品经理务实建议。">
+  
+  <!-- Google Fonts: ZCOOL KuaiLe, Ma Shan Zheng, Quicksand -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Quicksand:wght@400;500;600;700&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+  
+  <!-- Fallback/External Posts Data -->
+  <script src="/posts.js"></script>
+
+  <style>
+    /* ==========================================================================
+       1. Design Tokens & CSS Variables (Studio Ghibli Watercolor Palette)
+       ========================================================================== */
+    :root {
+      /* Palette */
+      --ghibli-sky-1: #e9f6ff;
+      --ghibli-sky-2: #c5e6fb;
+      --ghibli-sky-deep: #4a8db7;
+      --ghibli-grass-light: #e3f0da;
+      --ghibli-grass-med: #88b04b;
+      --ghibli-grass-deep: #436e35;
+      --ghibli-sun-gold: #f9d56e;
+      --ghibli-sunset-orange: #f38150;
+      --ghibli-cherry-pink: #f8c9cb;
+      --ghibli-cherry-light: #fff0f1;
+      --ghibli-paper-bg: #fbf8f1;
+      --ghibli-paper-card: #fffdf9;
+      --ghibli-paper-border: #e2d7c5;
+      --ghibli-ink-primary: #2d3436;
+      --ghibli-ink-secondary: #576574;
+      --ghibli-ink-light: #8395a7;
+      --ghibli-amber: #e67e22;
+
+      /* Organic Shapes & Shadows */
+      --hand-radius-sm: 255px 15px 225px 15px/15px 225px 15px 255px;
+      --hand-radius-md: 20px 255px 20px 255px/255px 20px 255px 20px;
+      --hand-radius-lg: 30px 10px 40px 15px/15px 35px 10px 30px;
+      --shadow-paper: 0 4px 20px rgba(74, 141, 183, 0.08), 0 2px 6px rgba(67, 110, 53, 0.05);
+      --shadow-hover: 0 12px 32px rgba(74, 141, 183, 0.16), 0 6px 12px rgba(67, 110, 53, 0.1);
+      --shadow-bubble: 0 4px 15px rgba(243, 129, 80, 0.12);
+
+      /* Typography */
+      --font-title: 'ZCOOL KuaiLe', 'PingFang SC', 'Hiragino Sans GB', cursive, sans-serif;
+      --font-art: 'Ma Shan Zheng', 'Kaiti SC', STKaiti, serif;
+      --font-sans: 'Quicksand', -apple-system, BlinkMacSystemFont, "PingFang SC", "Segoe UI", Roboto, sans-serif;
+    }
+
+    /* ==========================================================================
+       2. Base Reset & Watercolor Paper Canvas
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--ghibli-paper-bg);
+      color: var(--ghibli-ink-primary);
+      line-height: 1.68;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      /* Watercolor Texture Effect */
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(227, 240, 218, 0.6) 0%, transparent 40%),
+        radial-gradient(circle at 90% 10%, rgba(197, 230, 251, 0.7) 0%, transparent 50%),
+        radial-gradient(circle at 50% 80%, rgba(248, 201, 203, 0.35) 0%, transparent 60%),
+        radial-gradient(circle at 80% 90%, rgba(249, 213, 110, 0.3) 0%, transparent 40%),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+      background-attachment: fixed;
+    }
+
+    /* Selection */
+    ::selection {
+      background: var(--ghibli-grass-light);
+      color: var(--ghibli-grass-deep);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* ==========================================================================
+       3. Atmosphere & Floating Sky Elements (Clouds, Spores, Leaves)
+       ========================================================================== */
+    .ghibli-sky-decor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .cloud {
+      position: absolute;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.4) 60%, transparent 80%);
+      filter: blur(14px);
+      border-radius: 50%;
+      animation: cloudDrift linear infinite;
+    }
+    .cloud-1 {
+      width: 420px;
+      height: auto;
+      top: 4%;
+      left: -20%;
+      animation-duration: 95s;
+    }
+    .cloud-2 {
+      width: 580px;
+      height: 210px;
+      top: 14%;
+      left: -35%;
+      animation-duration: 130s;
+      animation-delay: 20s;
+    }
+    .cloud-3 {
+      width: 320px;
+      height: auto;
+      top: 28%;
+      left: -15%;
+      animation-duration: 80s;
+      animation-delay: 45s;
+    }
+
+    @keyframes cloudDrift {
+      0% { transform: translateX(-10vw); }
+      100% { transform: translateX(120vw); }
+    }
+
+    /* Floating Seed/Spore Particles */
+    .dandelion-spore {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      opacity: 0.65;
+      animation: floatUpAndSway ease-in-out infinite;
+    }
+    .dandelion-spore::after {
+      content: '<span class="ic ic-sprout" aria-hidden="true"></span>';
+      font-size: 14px;
+      display: block;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
+    }
+    .spore-1 { left: 8%; bottom: -5%; animation-duration: 18s; animation-delay: 0s; }
+    .spore-2 { left: 32%; bottom: -5%; animation-duration: 23s; animation-delay: 4s; }
+    .spore-3 { left: 68%; bottom: -5%; animation-duration: 20s; animation-delay: 8s; }
+    .spore-4 { left: 88%; bottom: -5%; animation-duration: 25s; animation-delay: 2s; }
+    .spore-5 { left: 48%; bottom: -5%; animation-duration: 19s; animation-delay: 11s; }
+
+    @keyframes floatUpAndSway {
+      0% {
+        transform: translateY(0) rotate(0deg) scale(0.8);
+        opacity: 0;
+      }
+      15% { opacity: 0.7; }
+      85% { opacity: 0.7; }
+      100% {
+        transform: translateY(-115vh) rotate(360deg) scale(1.1);
+        opacity: 0;
+      }
+    }
+
+    /* ==========================================================================
+       4. Top Navigation & Brand Header
+       ========================================================================== */
+    .site-header {
+      position: relative;
+      z-index: 10;
+      padding: 1.5rem 0 1rem;
+      border-bottom: 2px dashed rgba(136, 176, 75, 0.35);
+      background: rgba(251, 248, 241, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .brand-logo-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .brand-logo-group:hover {
+      transform: scale(1.02) rotate(-1deg);
+    }
+
+    .logo-frame {
+      width: 58px;
+      height: 58px;
+      border-radius: var(--hand-radius-sm);
+      overflow: hidden;
+      border: 3px solid #fff;
+      box-shadow: 0 4px 12px rgba(67, 110, 53, 0.2), 0 0 0 2px var(--ghibli-grass-med);
+      background: #fff;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .logo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .brand-text-wrap h1 {
+      font-family: var(--font-title);
+      font-size: 1.85rem;
+      font-weight: normal;
+      color: var(--ghibli-grass-deep);
+      line-height: 1.15;
+      text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.9), 3px 3px 0px rgba(136, 176, 75, 0.2);
+      letter-spacing: 0.5px;
+    }
+    .brand-text-wrap p {
+      font-size: 0.9rem;
+      color: var(--ghibli-ink-secondary);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .brand-text-wrap p .tag-badge {
+      display: inline-block;
+      background: var(--ghibli-cherry-light);
+      color: var(--ghibli-sunset-orange);
+      padding: 1px 8px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border: 1px dashed var(--ghibli-cherry-pink);
+    }
+
+    .header-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn-ghibli {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1.15rem;
+      border-radius: var(--hand-radius-sm);
+      background: #fff;
+      color: var(--ghibli-grass-deep);
+      font-weight: 600;
+      font-size: 0.92rem;
+      border: 2px solid var(--ghibli-grass-med);
+      box-shadow: 0 3px 8px rgba(67, 110, 53, 0.12);
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .btn-ghibli:hover {
+      background: var(--ghibli-grass-light);
+      transform: translateY(-2px) rotate(1deg);
+      box-shadow: 0 6px 14px rgba(67, 110, 53, 0.2);
+    }
+    .btn-ghibli.active {
+      background: var(--ghibli-grass-med);
+      color: #fff;
+    }
+
+    /* ==========================================================================
+       5. Hero Section (Home View)
+       ========================================================================== */
+    .hero-section {
+      position: relative;
+      z-index: 5;
+      padding: 2.2rem 0 1.2rem;
+    }
+
+    .hero-banner-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(246, 252, 242, 0.95) 50%, rgba(233, 246, 255, 0.9) 100%);
+      border: 2px solid #fff;
+      border-radius: var(--hand-radius-lg);
+      padding: 1.8rem 2.2rem;
+      box-shadow: var(--shadow-paper);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    .hero-banner-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: repeating-linear-gradient(45deg, var(--ghibli-grass-med), var(--ghibli-grass-med) 15px, var(--ghibli-sunset-orange) 15px, var(--ghibli-sunset-orange) 30px, var(--ghibli-sky-deep) 30px, var(--ghibli-sky-deep) 45px);
+    }
+
+    .hero-text-content {
+      max-width: 680px;
+    }
+    .hero-pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #fff;
+      color: var(--ghibli-sunset-orange);
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: 1.5px solid var(--ghibli-cherry-pink);
+      box-shadow: 0 2px 6px rgba(243, 129, 80, 0.1);
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-title);
+      font-size: 2.4rem;
+      color: var(--ghibli-ink-primary);
+      line-height: 1.25;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.5px;
+    }
+    .hero-title .highlight {
+      color: var(--ghibli-grass-deep);
+      position: relative;
+      display: inline-block;
+    }
+    .hero-title .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background: rgba(249, 213, 110, 0.45);
+      z-index: -1;
+      border-radius: 4px;
+      transform: rotate(-1deg);
+    }
+
+    .hero-desc {
+      font-size: 1.02rem;
+      color: var(--ghibli-ink-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-meta-stats {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .stat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--ghibli-ink-secondary);
+      background: rgba(255,255,255,0.7);
+      padding: 0.35rem 0.8rem;
+      border-radius: 12px;
+      border: 1px solid var(--ghibli-paper-border);
+    }
+    .stat-badge span.num {
+      color: var(--ghibli-grass-deep);
+      font-weight: 700;
+      font-family: var(--font-sans);
+    }
+
+    .hero-totoro-illu {
+      position: relative;
+      flex-shrink: 0;
+      width: 180px;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .totoro-bubble {
+      width: 160px;
+      height: auto;
+      background: radial-gradient(circle, #fff 40%, var(--ghibli-grass-light) 90%);
+      border-radius: var(--hand-radius-md);
+      border: 3px dashed var(--ghibli-grass-med);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem;
+      text-align: center;
+      box-shadow: 0 6px 16px rgba(67, 110, 53, 0.15);
+      animation: floatBreath 5s ease-in-out infinite;
+    }
+    @keyframes floatBreath {
+      0%, 100% { transform: translateY(0px) rotate(1deg); }
+      50% { transform: translateY(-8px) rotate(-1deg); }
+    }
+    .totoro-bubble .icon {
+      font-size: 2.4rem;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .totoro-bubble .quote {
+      font-family: var(--font-art);
+      font-size: 0.95rem;
+      color: var(--ghibli-grass-deep);
+      line-height: 1.3;
+    }
+
+    /* ==========================================================================
+       6. Filter & Search Toolbar
+       ========================================================================== */
+    .toolbar-section {
+      position: relative;
+      z-index: 5;
+      margin: 1.2rem 0 1.8rem;
+    }
+
+    .toolbar-wrapper {
+      background: rgba(255, 255, 255, 0.85);
+      border: 2px solid var(--ghibli-paper-border);
+      border-radius: var(--hand-radius-sm);
+      padding: 1rem 1.4rem;
+      box-shadow: var(--shadow-paper);
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .search-input-box {
+      flex: 1;
+      min-width: 260px;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .search-input-box .search-icon {
+      position: absolute;
+      left: 14px;
+      font-size: 1.1rem;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    .search-input-box input {
+      width: 100%;
+      padding: 0.65rem 1rem 0.65rem 2.5rem;
+      border-radius: var(--hand-radius-sm);
+      border: 2px solid var(--ghibli-paper-border);
+      background: #fff;
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      color: var(--ghibli-ink-primary);
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    .search-input-box input:focus {
+      border-color: var(--ghibli-grass-med);
+      box-shadow: 0 0 0 4px rgba(136, 176, 75, 0.18);
+    }
+    .search-input-box input::placeholder {
+      color: var(--ghibli-ink-light);
+    }
+
+    .filter-pills-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+    .filter-tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 16px;
+      background: #fff;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--ghibli-ink-secondary);
+      border: 1.5px solid var(--ghibli-paper-border);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      white-space: nowrap;
+    }
+    .filter-tag-pill:hover {
+      border-color: var(--ghibli-grass-med);
+      background: var(--ghibli-grass-light);
+      color: var(--ghibli-grass-deep);
+      transform: translateY(-1.5px);
+    }
+    .filter-tag-pill.active {
+      background: var(--ghibli-grass-med);
+      color: #fff;
+      border-color: var(--ghibli-grass-deep);
+      box-shadow: 0 3px 8px rgba(67, 110, 53, 0.25);
+    }
+    .filter-tag-pill .count {
+      font-size: 0.75rem;
+      opacity: 0.85;
+      padding: 1px 5px;
+      border-radius: 8px;
+      background: rgba(0,0,0,0.06);
+    }
+    .filter-tag-pill.active .count {
+      background: rgba(255,255,255,0.25);
+    }
+
+    .results-tip {
+      font-size: 0.85rem;
+      color: var(--ghibli-ink-light);
+      font-weight: 500;
+    }
+
+    /* ==========================================================================
+       7. Posts Grid Section (Responsive 1/2/3/4 cols)
+       ========================================================================== */
+    .posts-grid-section {
+      position: relative;
+      z-index: 5;
+      padding-bottom: 4rem;
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.8rem;
+    }
+
+    /* Post Card (Watercolor Handcrafted Style) */
+    .post-card {
+      background: var(--ghibli-paper-card);
+      border: 2px solid var(--ghibli-paper-border);
+      border-radius: var(--hand-radius-sm);
+      box-shadow: var(--shadow-paper);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .post-card.rendered {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .post-card:hover {
+      transform: translateY(-8px) rotate(-0.5deg);
+      border-color: var(--ghibli-grass-med);
+      box-shadow: var(--shadow-hover);
+    }
+    .post-card:nth-child(even):hover {
+      transform: translateY(-8px) rotate(0.5deg);
+    }
+
+    /* Card Washi Tape Accent */
+    .post-card::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      right: 24px;
+      width: 60px;
+      height: 22px;
+      background: rgba(248, 201, 203, 0.75);
+      border-left: 2px dashed rgba(255,255,255,0.6);
+      border-right: 2px dashed rgba(255,255,255,0.6);
+      transform: rotate(4deg);
+      z-index: 3;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    /* Card Cover & Visual */
+    .card-media-wrapper {
+      position: relative;
+      width: 100%;
+      height: 210px;
+      overflow: hidden;
+      background: #f0ede6;
+      border-bottom: 2px dashed var(--ghibli-paper-border);
+    }
+    .card-media-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.4s ease;
+    }
+    .post-card:hover .card-media-wrapper img {
+      transform: scale(1.05);
+    }
+
+    .card-ghibli-badge {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(45, 52, 54, 0.75);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      z-index: 2;
+    }
+
+    .card-id-stamp {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1.5px solid var(--ghibli-grass-med);
+      color: var(--ghibli-grass-deep);
+      font-family: var(--font-title);
+      font-size: 0.95rem;
+      padding: 2px 10px;
+      border-radius: var(--hand-radius-sm);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      z-index: 2;
+    }
+
+    /* Card Body */
+    .card-body {
+      padding: 1.25rem 1.25rem 1rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 0.75rem;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .tag-chip {
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: var(--ghibli-grass-light);
+      color: var(--ghibli-grass-deep);
+      border: 1px solid rgba(136, 176, 75, 0.3);
+    }
+    .tag-chip:nth-child(2n) {
+      background: var(--ghibli-sky-1);
+      color: var(--ghibli-sky-deep);
+      border-color: rgba(74, 141, 183, 0.3);
+    }
+    .tag-chip:nth-child(3n) {
+      background: var(--ghibli-cherry-light);
+      color: var(--ghibli-sunset-orange);
+      border-color: rgba(243, 129, 80, 0.3);
+    }
+
+    .card-title {
+      font-family: var(--font-sans);
+      font-size: 1.12rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--ghibli-ink-primary);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      transition: color 0.2s ease;
+    }
+    .post-card:hover .card-title {
+      color: var(--ghibli-grass-deep);
+    }
+
+    /* Xiaoyu Card Mini Bubble */
+    .card-xiaoyu-quote {
+      background: linear-gradient(135deg, #fff7f2 0%, #ffedf0 100%);
+      border: 1.5px solid #fed2c9;
+      border-radius: var(--hand-radius-sm);
+      padding: 0.65rem 0.8rem;
+      font-size: 0.84rem;
+      color: #933827;
+      line-height: 1.45;
+      position: relative;
+      margin-top: auto;
+      box-shadow: var(--shadow-bubble);
+    }
+    .card-xiaoyu-quote .quote-header {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--ghibli-sunset-orange);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-bottom: 0.2rem;
+    }
+    .card-xiaoyu-quote p {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Card Footer */
+    .card-footer {
+      padding: 0.8rem 1.25rem;
+      border-top: 1px dashed var(--ghibli-paper-border);
+      background: rgba(251, 248, 241, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .interaction-stats {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      font-size: 0.82rem;
+      color: var(--ghibli-ink-light);
+    }
+    .like-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 3px 6px;
+      border-radius: 8px;
+      color: var(--ghibli-ink-light);
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    .like-btn:hover {
+      color: var(--ghibli-sunset-orange);
+      background: #fff;
+    }
+    .like-btn.liked {
+      color: #e74c3c;
+    }
+    .like-btn.liked .heart-icon {
+      animation: heartPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes heartPop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.4); }
+      100% { transform: scale(1); }
+    }
+
+    .btn-read-detail {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--ghibli-grass-deep);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: transform 0.2s ease;
+    }
+    .post-card:hover .btn-read-detail {
+      transform: translateX(3px);
+    }
+
+    /* ==========================================================================
+       8. Detail Page View (/post/{id})
+       ========================================================================== */
+    .detail-view-container {
+      position: relative;
+      z-index: 5;
+      padding: 1.8rem 0 5rem;
+    }
+
+    .detail-navigation-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-back-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.25rem;
+      background: #fff;
+      border: 2px solid var(--ghibli-grass-med);
+      border-radius: var(--hand-radius-sm);
+      color: var(--ghibli-grass-deep);
+      font-weight: 700;
+      font-size: 0.95rem;
+      box-shadow: var(--shadow-paper);
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .btn-back-home:hover {
+      background: var(--ghibli-grass-light);
+      transform: translateX(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .post-stepper {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .btn-step {
+      padding: 0.55rem 0.9rem;
+      background: #fff;
+      border: 1.5px solid var(--ghibli-paper-border);
+      border-radius: var(--hand-radius-sm);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--ghibli-ink-secondary);
+      transition: all 0.2s ease;
+    }
+    .btn-step:hover:not(:disabled) {
+      border-color: var(--ghibli-grass-med);
+      color: var(--ghibli-grass-deep);
+      background: var(--ghibli-grass-light);
+    }
+    .btn-step:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* Detail Hero Header */
+    .detail-main-header {
+      background: #fff;
+      border: 2px solid var(--ghibli-paper-border);
+      border-radius: var(--hand-radius-lg);
+      padding: 2rem 2.2rem;
+      box-shadow: var(--shadow-paper);
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .detail-main-header::before {
+      content: '<span class="ic ic-pin" aria-hidden="true"></span> 小红书精选手稿';
+      position: absolute;
+      top: -12px;
+      left: 30px;
+      background: var(--ghibli-sun-gold);
+      color: #614605;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 2px 12px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    .detail-title {
+      font-family: var(--font-title);
+      font-size: 2.1rem;
+      color: var(--ghibli-ink-primary);
+      line-height: 1.3;
+      margin: 0.5rem 0 1rem;
+    }
+
+    .detail-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .detail-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .source-rednote-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 1rem;
+      background: #fe2c55;
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border-radius: 20px;
+      box-shadow: 0 3px 8px rgba(254, 44, 85, 0.25);
+      transition: all 0.2s ease;
+    }
+    .source-rednote-link:hover {
+      background: #e02447;
+      transform: scale(1.03);
+    }
+
+    /* 4-Block Layout for Detail Content */
+    .detail-four-blocks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+    }
+
+    @media (max-width: 900px) {
+      .detail-four-blocks {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .block-card {
+      background: #fff;
+      border: 2px solid var(--ghibli-paper-border);
+      border-radius: var(--hand-radius-sm);
+      padding: 1.8rem;
+      box-shadow: var(--shadow-paper);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .block-header {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      border-bottom: 2px dashed rgba(0,0,0,0.08);
+      padding-bottom: 0.8rem;
+    }
+    .block-icon-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .block-title-text h3 {
+      font-family: var(--font-title);
+      font-size: 1.35rem;
+      color: var(--ghibli-ink-primary);
+      font-weight: normal;
+      line-height: 1.2;
+    }
+    .block-title-text p {
+      font-size: 0.8rem;
+      color: var(--ghibli-ink-light);
+    }
+
+    /* Block 1: Original Post */
+    .block-original {
+      grid-column: span 1;
+      border-color: #d1dfc8;
+      background: linear-gradient(180deg, #ffffff 0%, #fafff8 100%);
+    }
+    .block-original .block-icon-badge {
+      background: var(--ghibli-grass-light);
+      color: var(--ghibli-grass-deep);
+    }
+    .original-content-text {
+      font-size: 1rem;
+      color: var(--ghibli-ink-primary);
+      line-height: 1.75;
+      white-space: pre-line;
+      background: rgba(251, 248, 241, 0.6);
+      padding: 1.2rem;
+      border-radius: 12px;
+      border: 1px solid var(--ghibli-paper-border);
+    }
+    .original-img-container {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--ghibli-paper-border);
+      max-height: 320px;
+      background: #f0ede6;
+    }
+    .original-img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      cursor: zoom-in;
+      transition: transform 0.3s ease;
+    }
+    .original-img-container img:hover {
+      transform: scale(1.02);
+    }
+
+    /* Block 2: Xiaoyu's Comment (傲娇毒舌护短) */
+    .block-xiaoyu {
+      grid-column: span 1;
+      border-color: #ffd0c7;
+      background: linear-gradient(135deg, #fff9f7 0%, #fff2f4 100%);
+    }
+    .block-xiaoyu .block-icon-badge {
+      background: #ffe3de;
+      color: var(--ghibli-sunset-orange);
+    }
+    .xiaoyu-bubble-box {
+      background: #fff;
+      border: 2px solid #fed1c7;
+      border-radius: var(--hand-radius-sm);
+      padding: 1.4rem;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(243, 129, 80, 0.08);
+    }
+    .xiaoyu-bubble-box::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 30px;
+      border-width: 0 10px 10px 10px;
+      border-style: solid;
+      border-color: transparent transparent #fed1c7 transparent;
+    }
+    .xiaoyu-comment-text {
+      font-size: 1.05rem;
+      color: #7b291a;
+      line-height: 1.7;
+      font-weight: 500;
+    }
+    .xiaoyu-tagline {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      font-family: var(--font-art);
+      font-size: 1.05rem;
+      color: var(--ghibli-sunset-orange);
+    }
+
+    /* Block 3: TP's Advice (AI产品经理落地) */
+    .block-tp-advice {
+      grid-column: span 1;
+      border-color: #cbe6b8;
+      background: linear-gradient(135deg, #f8fcf5 0%, #edf7e6 100%);
+    }
+    .block-tp-advice .block-icon-badge {
+      background: #d4ebd0;
+      color: var(--ghibli-grass-deep);
+    }
+    .tp-advice-box {
+      background: #fff;
+      border: 2px solid #cbe6b8;
+      border-radius: var(--hand-radius-sm);
+      padding: 1.4rem;
+      box-shadow: 0 4px 15px rgba(67, 110, 53, 0.08);
+    }
+    .tp-advice-text {
+      font-size: 1.02rem;
+      color: #274d1a;
+      line-height: 1.7;
+      font-weight: 500;
+    }
+    .tp-action-checklist {
+      margin-top: 1rem;
+      padding-top: 0.8rem;
+      border-top: 1px dashed rgba(67, 110, 53, 0.2);
+      font-size: 0.88rem;
+      color: var(--ghibli-grass-deep);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* Block 4: Ghibli Artwork */
+    .block-ghibli-art {
+      grid-column: span 1;
+      border-color: #c7e1f4;
+      background: linear-gradient(135deg, #f3f9fd 0%, #e5f2fa 100%);
+    }
+    .block-ghibli-art .block-icon-badge {
+      background: #d4ebf9;
+      color: var(--ghibli-sky-deep);
+    }
+    .ghibli-art-frame {
+      border: 6px solid #fff;
+      border-radius: var(--hand-radius-sm);
+      box-shadow: 0 6px 18px rgba(74, 141, 183, 0.18);
+      overflow: hidden;
+      background: #fff;
+      position: relative;
+    }
+    .ghibli-art-frame img {
+      width: 100%;
+      max-height: 380px;
+      object-fit: contain;
+      transition: transform 0.4s ease;
+    }
+    .ghibli-art-frame:hover img {
+      transform: scale(1.03);
+    }
+    .ghibli-art-caption {
+      text-align: center;
+      font-family: var(--font-art);
+      font-size: 1.05rem;
+      color: var(--ghibli-sky-deep);
+      margin-top: 0.6rem;
+    }
+
+    /* Detail Footer Suggestions */
+    .detail-related-posts {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 2px dashed var(--ghibli-paper-border);
+    }
+    .related-title {
+      font-family: var(--font-title);
+      font-size: 1.6rem;
+      color: var(--ghibli-grass-deep);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* ==========================================================================
+       9. Image Lightbox Modal
+       ========================================================================== */
+    .lightbox-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(45, 52, 54, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      cursor: zoom-out;
+    }
+    .lightbox-modal.active {
+      display: flex;
+    }
+    .lightbox-content {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+      border: 4px solid #fff;
+      object-fit: contain;
+    }
+    .lightbox-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      color: #fff;
+      font-size: 2.2rem;
+      font-weight: 300;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    /* ==========================================================================
+       10. Site Footer
+       ========================================================================== */
+    .site-footer {
+      position: relative;
+      z-index: 5;
+      padding: 2.5rem 0 2rem;
+      border-top: 2px dashed rgba(136, 176, 75, 0.35);
+      background: rgba(251, 248, 241, 0.95);
+      text-align: center;
+    }
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .footer-stamp {
+      font-family: var(--font-title);
+      font-size: 1.35rem;
+      color: var(--ghibli-grass-deep);
+    }
+    .footer-sub {
+      font-size: 0.88rem;
+      color: var(--ghibli-ink-secondary);
+      max-width: 600px;
+      line-height: 1.6;
+    }
+    .footer-credits {
+      font-size: 0.78rem;
+      color: var(--ghibli-ink-light);
+      margin-top: 0.5rem;
+    }
+
+    /* 404 Empty State */
+    .empty-search-state {
+      text-align: center;
+      padding: 4rem 1rem;
+      background: #fff;
+      border: 2px dashed var(--ghibli-paper-border);
+      border-radius: var(--hand-radius-lg);
+      margin: 2rem 0;
+    }
+    .empty-search-state .emoji {
+      font-size: 3.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .empty-search-state h3 {
+      font-family: var(--font-title);
+      font-size: 1.5rem;
+      color: var(--ghibli-ink-primary);
+    }
+    .empty-search-state p {
+      color: var(--ghibli-ink-secondary);
+      margin-top: 0.4rem;
+    }
+
+    /* ==========================================================================
+       11. Responsive Breakpoints
+       ========================================================================== */
+    @media (max-width: 768px) {
+      .hero-banner-card {
+        flex-direction: column;
+        padding: 1.5rem;
+        text-align: center;
+      }
+      .hero-meta-stats {
+        justify-content: center;
+      }
+      .hero-title {
+        font-size: 1.8rem;
+      }
+      .posts-grid {
+        grid-template-columns: 1fr;
+      }
+      .brand-text-wrap h1 {
+        font-size: 1.5rem;
+      }
+      .detail-title {
+        font-size: 1.6rem;
+      }
+      .block-card {
+        padding: 1.25rem;
+      }
+    }
+  
+    /* ---- SVG icons (no emoji) ---- */
+    .ic{display:inline-block;width:1.1em;height:1.1em;vertical-align:-0.15em;
+        background-color:currentColor;
+        -webkit-mask-size:contain;mask-size:contain;
+        -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+        -webkit-mask-position:center;mask-position:center;}
+    .ic-sprout{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 22V11M12 11C12 7 9 4 4 4c0 5 3 7 8 7Zm0 0c0-4 3-7 8-7 0 5-3 7-8 7Z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 22V11M12 11C12 7 9 4 4 4c0 5 3 7 8 7Zm0 0c0-4 3-7 8-7 0 5-3 7-8 7Z'/%3E%3C/svg%3E");}
+    .ic-pin{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z'/%3E%3C/svg%3E");}
+    .ic-leaf{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 19c0-8 6-14 14-14 0 8-6 14-14 14Zm2-2c5-1 9-5 10-10'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 19c0-8 6-14 14-14 0 8-6 14-14 14Zm2-2c5-1 9-5 10-10'/%3E%3C/svg%3E");}
+    .ic-leaf2{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 20c0-9 8-16 16-16 0 9-7 16-16 16Z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 20c0-9 8-16 16-16 0 9-7 16-16 16Z'/%3E%3C/svg%3E");}
+    .ic-fish{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M2 12c3-5 9-5 12 0-3 5-9 5-12 0Zm12 0h6m0 0-3-3m3 3-3 3'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M2 12c3-5 9-5 12 0-3 5-9 5-12 0Zm12 0h6m0 0-3-3m3 3-3 3'/%3E%3C/svg%3E");}
+    .ic-book{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2V5Z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2V5Z'/%3E%3C/svg%3E");}
+    .ic-book2{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 4h11a2 2 0 0 1 2 2v14H7a2 2 0 0 0-2 2V4Z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 4h11a2 2 0 0 1 2 2v14H7a2 2 0 0 0-2 2V4Z'/%3E%3C/svg%3E");}
+    .ic-palette{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3a9 9 0 1 0 0 18c1.5 0 2-1 2-2 0-1.5 1-2 2-2h2a3 3 0 0 0 3-3c0-5-4-9-9-9Z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3a9 9 0 1 0 0 18c1.5 0 2-1 2-2 0-1.5 1-2 2-2h2a3 3 0 0 0 3-3c0-5-4-9-9-9Z'/%3E%3C/svg%3E");}
+    .ic-heart{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21C5 15 2 11 2 7.5A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 10 1.5C22 11 19 15 12 21Z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21C5 15 2 11 2 7.5A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 10 1.5C22 11 19 15 12 21Z'/%3E%3C/svg%3E");}
+    .ic-heart-o{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21C5 15 2 11 2 7.5A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 10 1.5C22 11 19 15 12 21Z' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21C5 15 2 11 2 7.5A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 10 1.5C22 11 19 15 12 21Z' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E");}
+    .ic-star{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3l2.5 6.5L21 10l-5 4 1.5 7L12 17l-5.5 4L8 14 3 10l6.5-.5L12 3Z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3l2.5 6.5L21 10l-5 4 1.5 7L12 17l-5.5 4L8 14 3 10l6.5-.5L12 3Z'/%3E%3C/svg%3E");}
+    .ic-search{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='7' fill='none' stroke='black' stroke-width='2'/%3E%3Cpath d='m16 16 5 5' stroke='black' stroke-width='2'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='7' fill='none' stroke='black' stroke-width='2'/%3E%3Cpath d='m16 16 5 5' stroke='black' stroke-width='2'/%3E%3C/svg%3E");}
+    .ic-target{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='9' fill='none' stroke='black' stroke-width='2'/%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='9' fill='none' stroke='black' stroke-width='2'/%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3C/svg%3E");}
+    .ic-pen{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 20l4-1 10-10-3-3L5 16l-1 4Z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 20l4-1 10-10-3-3L5 16l-1 4Z'/%3E%3C/svg%3E");}
+    .ic-bulb{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 18h6m-5 3h4M12 3a6 6 0 0 0-3 11c1 1 1 2 1 3h4c0-1 0-2 1-3a6 6 0 0 0-3-11Z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 18h6m-5 3h4M12 3a6 6 0 0 0-3 11c1 1 1 2 1 3h4c0-1 0-2 1-3a6 6 0 0 0-3-11Z'/%3E%3C/svg%3E");}
+    .ic-wheat{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 22V8m0 0c-2-2-2-5 0-6 2 1 2 4 0 6Zm0 4c-2-2-2-5 0-6 2 1 2 4 0 6Z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 22V8m0 0c-2-2-2-5 0-6 2 1 2 4 0 6Zm0 4c-2-2-2-5 0-6 2 1 2 4 0 6Z'/%3E%3C/svg%3E");}
+    .ic-arrow-l{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M15 5l-7 7 7 7' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M15 5l-7 7 7 7' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E");}
+    .ic-arrow-r{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 5l7 7-7 7' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 5l7 7-7 7' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E");}
+    .ic-arrow-ne{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 17 17 7M9 7h8v8' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 17 17 7M9 7h8v8' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E");}
+
+  </style>
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <link rel="canonical" href="https://rednote.tpgofighting.top/">
+  <meta property="og:title" content="TP 的小红书 · AI 探索手札">
+  <meta property="og:description" content="TP 的小红书 AI 探索手札，精选 AI 前沿内容，结合产品思考、工具实践与事实查证。">
+  <meta property="og:url" content="https://rednote.tpgofighting.top/">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json" data-tp-seo-jsonld>{"@context":"https://schema.org","@type":"WebSite","name":"TP 的小红书 · AI 探索手札","url":"https://rednote.tpgofighting.top/","description":"TP 的小红书 AI 探索手札，精选 AI 前沿内容，结合产品思考、工具实践与事实查证。","inLanguage":"zh-CN","publisher":{"@type":"Person","name":"唐潘","alternateName":"Tyler Tang","url":"https://tpgofighting.top/"}}</script>
+</head>
+<body>
+
+  <!-- Floating Atmosphere Canvas -->
+  <div class="ghibli-sky-decor" aria-hidden="true">
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+    <div class="dandelion-spore spore-1"></div>
+    <div class="dandelion-spore spore-2"></div>
+    <div class="dandelion-spore spore-3"></div>
+    <div class="dandelion-spore spore-4"></div>
+    <div class="dandelion-spore spore-5"></div>
+  </div>
+
+  <!-- Main Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="brand-logo-group" onclick="handleLinkClick(event, '/')">
+        <div class="logo-frame">
+          <img src="/assets/logo.jpg" alt="TP Hub Logo" onerror="this.onerror=null; this.src='/assets/ghibli/ghibli_1.jpg';">
+        </div>
+        <div class="brand-text-wrap">
+          <h1>TP的小红书</h1>
+          <p>
+            <span>小鱼帮你刷的 20 篇 AI 好帖</span>
+            <span class="tag-badge">Ghibli Watercolor</span>
+          </p>
+        </div>
+      </a>
+
+      <div class="header-nav-actions">
+        <a href="/" class="btn-ghibli active" id="nav-btn-home" onclick="handleLinkClick(event, '/')">
+          <span><span class="ic ic-leaf" aria-hidden="true"></span></span> <span>手稿大厅</span>
+        </a>
+        <button class="btn-ghibli" onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})">
+          <span><span class="ic ic-fish" aria-hidden="true"></span></span> <span>关于小鱼</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Dynamic Router View Mount Point -->
+  <main id="app-router-view" class="container">
+    <!-- Rendered via JS -->
+  </main>
+
+  <!-- Image Lightbox Modal -->
+  <div class="lightbox-modal" id="lightbox-modal" onclick="closeLightbox()">
+    <span class="lightbox-close-btn" aria-label="关闭">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" src="" alt="放大预览">
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-stamp"><span class="ic ic-sprout" aria-hidden="true"></span> TP的小红书 · 宫崎骏水彩手稿集</div>
+      <p class="footer-sub">
+        由早期吕小鱼傲娇毒舌护短精选 · 20 篇 AI 前沿实践、Vibe Coding 与产品求职实战手札。<br>
+        「笨蛋 TP，学了这些要是还做不出好产品，看我不拍你桌子！」
+      </p>
+      <div class="footer-credits">
+        Design & Curated with Studio Ghibli Aesthetic · Single-Page Application
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       JavaScript Logic (SPA Router, Filter, Likes, Data Fallback)
+       ========================================================================== -->
+  <script>
+    // --- 1. Post Data Fallback in case posts.js is loaded asynchronously ---
+    if (!window.POSTS || !Array.isArray(window.POSTS)) {
+      window.POSTS = [];
+    }
+
+    // Liked state management
+    const getLikedPosts = () => {
+      try {
+        return JSON.parse(localStorage.getItem('tp_liked_posts') || '{}');
+      } catch (e) {
+        return {};
+      }
+    };
+
+    const toggleLike = (id, event) => {
+      if (event) event.stopPropagation();
+      const liked = getLikedPosts();
+      liked[id] = !liked[id];
+      try {
+        localStorage.setItem('tp_liked_posts', JSON.stringify(liked));
+      } catch (e) {}
+
+      const btn = document.getElementById(`like-btn-${id}`);
+      const countEl = document.getElementById(`like-count-${id}`);
+      if (btn && countEl) {
+        const baseLikes = (id * 17 + 88) % 190 + 42;
+        if (liked[id]) {
+          btn.classList.add('liked');
+          countEl.textContent = baseLikes + 1;
+        } else {
+          btn.classList.remove('liked');
+          countEl.textContent = baseLikes;
+        }
+      }
+    };
+
+    // Lightbox modal handlers
+    const openLightbox = (imgSrc, event) => {
+      if (event) event.stopPropagation();
+      const modal = document.getElementById('lightbox-modal');
+      const img = document.getElementById('lightbox-img');
+      img.src = imgSrc;
+      modal.classList.add('active');
+    };
+
+    const closeLightbox = () => {
+      const modal = document.getElementById('lightbox-modal');
+      modal.classList.remove('active');
+    };
+
+    // Filter & Search State
+    let currentFilterTag = '全部';
+    let currentSearchQuery = '';
+
+    // --- 2. SPA Router System ---
+    function parseCurrentRoute() {
+      // Supports pathname (/post/1), hash (#/post/1 or #1), and query params (?id=1)
+      const pathname = window.location.pathname;
+      const hash = window.location.hash;
+      const search = window.location.search;
+
+      // 1) Search param ?id=N
+      const urlParams = new URLSearchParams(search);
+      if (urlParams.has('id') || urlParams.has('post')) {
+        const id = parseInt(urlParams.get('id') || urlParams.get('post'), 10);
+        if (!isNaN(id)) return { route: 'detail', id };
+      }
+
+      // 2) Hash routing #/post/N or #post-N or #N
+      if (hash) {
+        const hashMatch = hash.match(/#\/?(?:post[\/-]?)?(\d+)/i);
+        if (hashMatch && hashMatch[1]) {
+          return { route: 'detail', id: parseInt(hashMatch[1], 10) };
+        }
+      }
+
+      // 3) Pathname routing /post/N
+      const pathMatch = pathname.match(/\/post\/(\d+)/i);
+      if (pathMatch && pathMatch[1]) {
+        return { route: 'detail', id: parseInt(pathMatch[1], 10) };
+      }
+
+      // Default to home
+      return { route: 'home' };
+    }
+
+    function navigateTo(url) {
+      if (window.location.protocol === 'file:') {
+        // file:// safe hash fallback
+        if (url === '/') {
+          window.location.hash = '';
+        } else if (url.startsWith('/post/')) {
+          const id = url.replace('/post/', '');
+          window.location.hash = `#/post/${id}`;
+        }
+      } else {
+        window.history.pushState({}, '', url);
+      }
+      renderRoute();
+    }
+
+    function handleLinkClick(event, url) {
+      if (event) {
+        event.preventDefault();
+      }
+      navigateTo(url);
+    }
+
+    // --- 3. View Renderers ---
+    function renderHomeView() {
+      const app = document.getElementById('app-router-view');
+      document.title = 'TP的小红书 — 小鱼帮你刷的 20 篇 AI 好帖';
+      
+      const posts = window.POSTS || [];
+
+      // Extract all unique tags
+      const tagCountMap = { '全部': posts.length };
+      posts.forEach(p => {
+        if (Array.isArray(p.tags)) {
+          p.tags.forEach(t => {
+            tagCountMap[t] = (tagCountMap[t] || 0) + 1;
+          });
+        }
+      });
+      const topTags = Object.keys(tagCountMap);
+
+      // Filter posts
+      const filteredPosts = posts.filter(p => {
+        const matchTag = (currentFilterTag === '全部') || (Array.isArray(p.tags) && p.tags.includes(currentFilterTag));
+        if (!matchTag) return false;
+        if (!currentSearchQuery.trim()) return true;
+        const q = currentSearchQuery.toLowerCase();
+        const inTitle = p.title && p.title.toLowerCase().includes(q);
+        const inText = p.originalText && p.originalText.toLowerCase().includes(q);
+        const inXiaoyu = p.xiaoyuComment && p.xiaoyuComment.toLowerCase().includes(q);
+        const inTp = p.tpAdvice && p.tpAdvice.toLowerCase().includes(q);
+        const inTags = Array.isArray(p.tags) && p.tags.some(t => t.toLowerCase().includes(q));
+        return inTitle || inText || inXiaoyu || inTp || inTags;
+      });
+
+      const likedMap = getLikedPosts();
+
+      app.innerHTML = `
+        <!-- Hero Section -->
+        <section class="hero-section">
+          <div class="hero-banner-card">
+            <div class="hero-text-content">
+              <div class="hero-pill-badge">
+                <span><span class="ic ic-leaf2" aria-hidden="true"></span></span> 宫崎骏漫画手稿风格 · AI 原生手札
+              </div>
+              <h2 class="hero-title">
+                探索 <span class="highlight">20 篇 AI 前沿好帖</span>，<br>
+                把灵感带回绿意森林。
+              </h2>
+              <p class="hero-desc">
+                由傲娇毒舌但护短的「吕小鱼」为您梳理！覆盖 Vibe Coding、开源模型评测、学术订阅与产品求职落地。
+              </p>
+              <div class="hero-meta-stats">
+                <div class="stat-badge"><span><span class="ic ic-book" aria-hidden="true"></span> 馆藏手札：</span><span class="num">${posts.length} 篇</span></div>
+                <div class="stat-badge"><span><span class="ic ic-fish" aria-hidden="true"></span> 小鱼锐评：</span><span class="num">100% 毒舌护短</span></div>
+                <div class="stat-badge"><span><span class="ic ic-sprout" aria-hidden="true"></span> 产品落地：</span><span class="num">务实可执行</span></div>
+              </div>
+            </div>
+
+            <div class="hero-totoro-illu">
+              <div class="totoro-bubble">
+                <div class="icon"><span class="ic ic-fish" aria-hidden="true"></span></div>
+                <div class="quote">“才不是为了帮你才整理的呢，笨蛋 TP！”</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Filter & Search Toolbar -->
+        <section class="toolbar-section">
+          <div class="toolbar-wrapper">
+            <div class="search-row">
+              <div class="search-input-box">
+                <span class="search-icon"><span class="ic ic-search" aria-hidden="true"></span></span>
+                <input 
+                  type="text" 
+                  id="search-input" 
+                  placeholder="搜索 AI 工具、Vibe Coding、小鱼锐评或实习落地..." 
+                  value="${escapeHtml(currentSearchQuery)}"
+                  oninput="handleSearchInput(this.value)"
+                >
+              </div>
+              <div class="results-tip">
+                已展示 <strong>${filteredPosts.length}</strong> / ${posts.length} 篇手稿
+              </div>
+            </div>
+
+            <div class="filter-pills-row">
+              ${topTags.map(tag => `
+                <button 
+                  class="filter-tag-pill ${currentFilterTag === tag ? 'active' : ''}" 
+                  onclick="handleTagFilter('${escapeHtml(tag)}')"
+                >
+                  <span>${escapeHtml(tag)}</span>
+                  <span class="count">${tagCountMap[tag]}</span>
+                </button>
+              `).join('')}
+            </div>
+          </div>
+        </section>
+
+        <!-- Posts Grid -->
+        <section class="posts-grid-section">
+          ${filteredPosts.length === 0 ? `
+            <div class="empty-search-state">
+              <div class="emoji"><span class="ic ic-leaf2" aria-hidden="true"></span></div>
+              <h3>没有找到相关手稿</h3>
+              <p>尝试搜索其他关键词，或点击上方“全部”重置筛选。</p>
+            </div>
+          ` : `
+            <div class="posts-grid" id="posts-grid-list">
+              ${filteredPosts.map((post, idx) => {
+                const isLiked = !!likedMap[post.id];
+                const baseLikes = (post.id * 17 + 88) % 190 + 42;
+                const displayLikes = isLiked ? baseLikes + 1 : baseLikes;
+                const coverImg = (post.images && post.images[0]) ? post.images[0] : (post.ghibliImage || '/assets/ghibli/ghibli_1.jpg');
+                const ghibliFallback = post.ghibliImage || '/assets/ghibli/ghibli_1.jpg';
+
+                return `
+                  <article 
+                    class="post-card" 
+                    id="post-card-${post.id}" 
+                    onclick="handleLinkClick(event, '/post/${post.id}')"
+                    tabindex="0"
+                    aria-label="${escapeHtml(post.title)}"
+                  >
+                    <div class="card-media-wrapper">
+                      <div class="card-id-stamp">#${String(post.id).padStart(2, '0')}</div>
+                      <img 
+                        src="${coverImg}" 
+                        alt="${escapeHtml(post.title)}" 
+                        loading="lazy" 
+                        onerror="this.onerror=null; this.src='${ghibliFallback}';"
+                      >
+                      <div class="card-ghibli-badge">
+                        <span><span class="ic ic-palette" aria-hidden="true"></span></span> <span>吉卜力插画</span>
+                      </div>
+                    </div>
+
+                    <div class="card-body">
+                      <div class="card-tags">
+                        ${(post.tags || []).slice(0, 3).map(t => `<span class="tag-chip">${escapeHtml(t)}</span>`).join('')}
+                      </div>
+
+                      <h3 class="card-title">${escapeHtml(post.title)}</h3>
+
+                      <div class="card-xiaoyu-quote">
+                        <div class="quote-header">
+                          <span><span class="ic ic-fish" aria-hidden="true"></span></span> <span>小鱼锐评</span>
+                        </div>
+                        <p>${escapeHtml(post.xiaoyuComment || '')}</p>
+                      </div>
+                    </div>
+
+                    <div class="card-footer">
+                      <div class="interaction-stats">
+                        <button 
+                          class="like-btn ${isLiked ? 'liked' : ''}" 
+                          id="like-btn-${post.id}" 
+                          onclick="toggleLike(${post.id}, event)"
+                          title="点赞"
+                        >
+                          <span class="heart-icon">${isLiked ? '<span class="ic ic-heart" aria-hidden="true"></span>' : '<span class="ic ic-heart-o" aria-hidden="true"></span>'}</span>
+                          <span id="like-count-${post.id}">${displayLikes}</span>
+                        </button>
+                        <span><span class="ic ic-star" aria-hidden="true"></span> ${(post.id * 13 + 55) % 120 + 30}</span>
+                      </div>
+
+                      <span class="btn-read-detail">
+                        <span>阅读手稿</span>
+                        <span><span class="ic ic-arrow-r" aria-hidden="true"></span></span>
+                      </span>
+                    </div>
+                  </article>
+                `;
+              }).join('')}
+            </div>
+          `}
+        </section>
+      `;
+
+      // Trigger card staggered entry animation via IntersectionObserver
+      initCardAnimations();
+    }
+
+    function renderDetailView(id) {
+      const app = document.getElementById('app-router-view');
+      const posts = window.POSTS || [];
+      const postIndex = posts.findIndex(p => Number(p.id) === Number(id));
+
+      if (postIndex === -1) {
+        // Post not found 404
+        document.title = '未找到手稿 — TP的小红书';
+        app.innerHTML = `
+          <div class="empty-search-state" style="margin: 4rem auto; max-width: 600px;">
+            <div class="emoji"><span class="ic ic-leaf2" aria-hidden="true"></span></div>
+            <h3>这篇手稿像龙猫一样隐身了</h3>
+            <p>未找到编号为 #${id} 的帖子，请返回手稿大厅查看其它篇章。</p>
+            <div style="margin-top: 1.5rem;">
+              <a href="/" class="btn-ghibli" onclick="handleLinkClick(event, '/')"><span class="ic ic-arrow-l" aria-hidden="true"></span> 返回手稿大厅</a>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      const post = posts[postIndex];
+      const prevPost = postIndex > 0 ? posts[postIndex - 1] : null;
+      const nextPost = postIndex < posts.length - 1 ? posts[postIndex + 1] : null;
+
+      document.title = `${post.title} — TP的小红书`;
+
+      const originalImg = (post.images && post.images[0]) ? post.images[0] : (post.ghibliImage || '/assets/ghibli/ghibli_1.jpg');
+      const ghibliImg = post.ghibliImage || '/assets/ghibli/ghibli_1.jpg';
+
+      app.innerHTML = `
+        <div class="detail-view-container">
+          <!-- Top Navigation -->
+          <div class="detail-navigation-bar">
+            <a href="/" class="btn-back-home" onclick="handleLinkClick(event, '/')">
+              <span><span class="ic ic-sprout" aria-hidden="true"></span></span> <span>返回手稿大厅</span>
+            </a>
+
+            <div class="post-stepper">
+              <button 
+                class="btn-step" 
+                ${prevPost ? `onclick="handleLinkClick(event, '/post/${prevPost.id}')"` : 'disabled'}
+              >
+                <span class="ic ic-arrow-l" aria-hidden="true"></span> 上一篇
+              </button>
+              <span style="font-size: 0.9rem; font-weight: 700; color: var(--ghibli-grass-deep); padding: 0 4px;">
+                ${postIndex + 1} / ${posts.length}
+              </span>
+              <button 
+                class="btn-step" 
+                ${nextPost ? `onclick="handleLinkClick(event, '/post/${nextPost.id}')"` : 'disabled'}
+              >
+                下一篇 <span class="ic ic-arrow-r" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Main Header -->
+          <header class="detail-main-header">
+            <h1 class="detail-title">${escapeHtml(post.title)}</h1>
+            <div class="detail-meta-row">
+              <div class="detail-tags">
+                ${(post.tags || []).map(t => `<span class="tag-chip" style="font-size: 0.85rem; padding: 4px 12px;"># ${escapeHtml(t)}</span>`).join('')}
+              </div>
+              ${post.sourceUrl ? `
+                <a href="${escapeHtml(post.sourceUrl)}" target="_blank" rel="noopener noreferrer" class="source-rednote-link">
+                  <span><span class="ic ic-book2" aria-hidden="true"></span></span> <span>小红书原帖链接 <span class="ic ic-arrow-ne" aria-hidden="true"></span></span>
+                </a>
+              ` : ''}
+            </div>
+          </header>
+
+          <!-- 4-Block Structured Content -->
+          <div class="detail-four-blocks">
+            
+            <!-- 区块 1: 原文内容 -->
+            <section class="block-card block-original">
+              <div class="block-header">
+                <div class="block-icon-badge"><span class="ic ic-pen" aria-hidden="true"></span></div>
+                <div class="block-title-text">
+                  <h3>原帖内容</h3>
+                  <p>小红书作者原汁原味分享</p>
+                </div>
+              </div>
+
+              <div class="original-content-text">
+                ${escapeHtml(post.originalText || '')}
+              </div>
+
+              <div class="original-img-container" onclick="openLightbox('${originalImg}', event)">
+                <img 
+                  src="${originalImg}" 
+                  alt="原帖插图" 
+                  loading="lazy"
+                  onerror="this.onerror=null; this.src='${ghibliImg}';"
+                >
+              </div>
+              <div style="font-size: 0.8rem; color: var(--ghibli-ink-light); text-align: center;">
+                （点击图片可放大查看）
+              </div>
+            </section>
+
+            <!-- 区块 2: 小鱼锐评 (早期吕小鱼傲娇毒舌护短人设) -->
+            <section class="block-card block-xiaoyu">
+              <div class="block-header">
+                <div class="block-icon-badge"><span class="ic ic-fish" aria-hidden="true"></span></div>
+                <div class="block-title-text">
+                  <h3>小鱼锐评</h3>
+                  <p>早期吕小鱼 · 傲娇毒舌但护短</p>
+                </div>
+              </div>
+
+              <div class="xiaoyu-bubble-box">
+                <div class="xiaoyu-comment-text">
+                  ${escapeHtml(post.xiaoyuComment || '')}
+                </div>
+                <div class="xiaoyu-tagline">
+                  <span>—— 吕小鱼（叉腰哼了一声）</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- 区块 3: TP 的建议 (对 AI 产品实习生的务实落地用途) -->
+            <section class="block-card block-tp-advice">
+              <div class="block-header">
+                <div class="block-icon-badge"><span class="ic ic-bulb" aria-hidden="true"></span></div>
+                <div class="block-title-text">
+                  <h3>TP 的建议</h3>
+                  <p>AI 产品实习生落地兵法与求职指南</p>
+                </div>
+              </div>
+
+              <div class="tp-advice-box">
+                <div class="tp-advice-text">
+                  ${escapeHtml(post.tpAdvice || '')}
+                </div>
+                <div class="tp-action-checklist">
+                  <span><span class="ic ic-target" aria-hidden="true"></span></span> <span>落地行动项：已纳入 TP 的 AI 产品作品集与面试复盘库</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- 区块 4: 宫崎骏插画 -->
+            <section class="block-card block-ghibli-art">
+              <div class="block-header">
+                <div class="block-icon-badge"><span class="ic ic-palette" aria-hidden="true"></span></div>
+                <div class="block-title-text">
+                  <h3>宫崎骏专属插画</h3>
+                  <p>吉卜力水彩自然画卷</p>
+                </div>
+              </div>
+
+              <div class="ghibli-art-frame" onclick="openLightbox('${ghibliImg}', event)">
+                <img 
+                  src="${ghibliImg}" 
+                  alt="宫崎骏风格插画" 
+                  loading="lazy"
+                  onerror="this.onerror=null; this.src='/assets/ghibli/ghibli_1.jpg';"
+                >
+              </div>
+              <div class="ghibli-art-caption">
+                「在微风与云海之间，寻找 AI 原生的诗意」
+              </div>
+            </section>
+
+          </div>
+
+          <!-- Related Posts Recommendation -->
+          <section class="detail-related-posts">
+            <h3 class="related-title">
+              <span><span class="ic ic-wheat" aria-hidden="true"></span></span> <span>探索更多手稿</span>
+            </h3>
+            <div class="posts-grid">
+              ${posts.filter(p => p.id !== post.id).slice(0, 3).map(p => `
+                <article 
+                  class="post-card rendered" 
+                  onclick="handleLinkClick(event, '/post/${p.id}')"
+                  style="opacity:1; transform:none;"
+                >
+                  <div class="card-media-wrapper" style="height: auto;">
+                    <img src="${(p.images && p.images[0]) || p.ghibliImage || '/assets/ghibli/ghibli_1.jpg'}" alt="${escapeHtml(p.title)}" loading="lazy">
+                  </div>
+                  <div class="card-body" style="padding: 1rem;">
+                    <h4 class="card-title" style="font-size: 1rem;">${escapeHtml(p.title)}</h4>
+                    <div style="font-size: 0.82rem; color: var(--ghibli-sunset-orange); font-weight: 600; margin-top: 0.4rem;">
+                      <span class="ic ic-fish" aria-hidden="true"></span> 小鱼：${escapeHtml(p.xiaoyuComment ? p.xiaoyuComment.slice(0, 36) + '...' : '')}
+                    </div>
+                  </div>
+                </article>
+              `).join('')}
+            </div>
+          </section>
+        </div>
+      `;
+
+      // Scroll to top of viewport
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderRoute() {
+      const { route, id } = parseCurrentRoute();
+      if (route === 'detail' && id) {
+        renderDetailView(id);
+      } else {
+        renderHomeView();
+      }
+    }
+
+    // --- 4. Event Handlers & Helpers ---
+    function handleSearchInput(val) {
+      currentSearchQuery = val;
+      renderHomeView();
+      // Keep focus in search input
+      const input = document.getElementById('search-input');
+      if (input) {
+        input.focus();
+        input.setSelectionRange(val.length, val.length);
+      }
+    }
+
+    function handleTagFilter(tag) {
+      currentFilterTag = tag;
+      renderHomeView();
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function initCardAnimations() {
+      const cards = document.querySelectorAll('.post-card');
+      if (!('IntersectionObserver' in window)) {
+        cards.forEach(c => c.classList.add('rendered'));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('rendered');
+            }, 60);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '50px 0px', threshold: 0.1 });
+
+      cards.forEach(card => observer.observe(card));
+    }
+
+    // --- 5. App Initialization & History Popstate ---
+    window.addEventListener('popstate', () => {
+      renderRoute();
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderRoute();
+    });
+
+    // In case script executed after DOM load
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      renderRoute();
+    }
+  </script>
+<section data-tp-seo-context aria-label="本站简介" style="max-width:70ch;margin:2rem auto 1rem;padding:0 1rem;color:#6b7280;font-size:.72rem;line-height:1.6;opacity:.62;text-align:center"><p style="margin:0">TP 的小红书 · AI 探索手札：TP 的小红书 AI 探索手札，精选 AI 前沿内容，结合产品思考、工具实践与事实查证。</p></section>
+</body>
+</html>
