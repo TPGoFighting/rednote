@@ -9,7 +9,7 @@
   <!-- Google Fonts: ZCOOL KuaiLe, Ma Shan Zheng, Quicksand -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Quicksand:wght@400;500;600;700&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
   
   <!-- Fallback/External Posts Data -->
   <script src="/posts.js"></script>
@@ -1315,6 +1315,169 @@
     .ic-arrow-r{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 5l7 7-7 7' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 5l7 7-7 7' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E");}
     .ic-arrow-ne{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 17 17 7M9 7h8v8' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 17 17 7M9 7h8v8' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E");}
 
+  
+    /* ==========================================================================
+       TP Space Unified Neo-brutalist Design System Alignment
+       ========================================================================== */
+    :root {
+      --bg-canvas: #fbfaf6;
+      --bg-card: #ffffff;
+      --border-main: #181b22;
+      --border-subtle: rgba(24, 27, 34, 0.12);
+      --shadow-pop: 4px 4px 0px #181b22;
+      --shadow-pop-sm: 2px 2px 0px #181b22;
+      --shadow-pop-lg: 6px 6px 0px #181b22;
+      
+      --accent-yellow: #f59e0b;
+      --accent-lime: #d9ef7f;
+      --accent-blue: #2563eb;
+      
+      --ghibli-paper-bg: #fbfaf6;
+      --ghibli-paper-card: #ffffff;
+      --ghibli-paper-border: #181b22;
+      --ghibli-ink-primary: #111318;
+      --ghibli-sun-gold: #f59e0b;
+      --ghibli-sunset-orange: #f59e0b;
+      --ghibli-grass-med: #84cc16;
+      --ghibli-grass-light: #d9ef7f;
+      --ghibli-sky-deep: #2563eb;
+      
+      --hand-radius-sm: 8px;
+      --hand-radius-md: 14px;
+      --hand-radius-lg: 16px;
+      --shadow-paper: 4px 4px 0px #181b22;
+      --shadow-hover: 6px 6px 0px #181b22;
+      --shadow-bubble: 3px 3px 0px #181b22;
+      
+      --font-title: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
+      --font-art: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
+      --font-sans: 'Plus Jakarta Sans', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    body {
+      background-color: #fbfaf6 !important;
+      background-image: 
+        linear-gradient(rgba(20, 24, 33, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(20, 24, 33, 0.045) 1px, transparent 1px) !important;
+      background-size: 24px 24px !important;
+      color: var(--ghibli-ink-primary) !important;
+      font-family: var(--font-sans) !important;
+    }
+
+    /* Cards */
+    .post-card, .hero-banner-card, .detail-main-card, .xiaoyu-critique-panel, .tp-action-panel, .detail-image-card {
+      background: #ffffff !important;
+      border: 2px solid #181b22 !important;
+      border-radius: 14px !important;
+      box-shadow: 4px 4px 0px #181b22 !important;
+    }
+
+    .post-card:hover {
+      transform: translate(-1px, -2px) !important;
+      box-shadow: 6px 6px 0px #181b22 !important;
+    }
+
+    .card-media-wrapper {
+      border-top-left-radius: 12px !important;
+      border-top-right-radius: 12px !important;
+      border-bottom: 2px solid #181b22 !important;
+    }
+
+    /* Buttons */
+    .btn-ghibli, .btn-back-home, .source-link-btn, .like-btn {
+      border: 2px solid #181b22 !important;
+      border-radius: 9999px !important;
+      box-shadow: 2px 2px 0px #181b22 !important;
+      font-weight: 700 !important;
+      font-family: var(--font-sans) !important;
+      transition: all 0.15s ease !important;
+    }
+
+    .btn-ghibli:hover, .btn-back-home:hover, .source-link-btn:hover {
+      transform: translate(-1px, -1px) !important;
+      box-shadow: 3px 3px 0px #181b22 !important;
+      background: var(--accent-lime) !important;
+      color: #181b22 !important;
+    }
+
+    .btn-ghibli.active {
+      background: var(--accent-yellow) !important;
+      color: #181b22 !important;
+    }
+
+    /* Search and Tag filter */
+    .search-filter-card {
+      background: #ffffff !important;
+      border: 2px solid #181b22 !important;
+      border-radius: 14px !important;
+      box-shadow: 4px 4px 0px #181b22 !important;
+    }
+
+    .search-input-wrap input {
+      border: 2px solid #181b22 !important;
+      border-radius: 9999px !important;
+      box-shadow: 2px 2px 0px #181b22 !important;
+      font-family: var(--font-sans) !important;
+    }
+
+    .tag-pill {
+      border: 1.5px solid #181b22 !important;
+      border-radius: 9999px !important;
+      box-shadow: 2px 2px 0px #181b22 !important;
+      font-weight: 700 !important;
+      font-family: var(--font-sans) !important;
+    }
+
+    .tag-pill.active {
+      background: var(--accent-yellow) !important;
+      color: #181b22 !important;
+      box-shadow: 2px 2px 0px #181b22 !important;
+    }
+
+    /* Header */
+    .site-header {
+      background: rgba(251, 250, 246, 0.94) !important;
+      backdrop-filter: blur(12px) !important;
+      border-bottom: 2px solid #181b22 !important;
+    }
+
+    .logo-frame {
+      border: 2px solid #181b22 !important;
+      border-radius: 10px !important;
+      box-shadow: 2px 2px 0px #181b22 !important;
+      overflow: hidden !important;
+    }
+
+    .btn-tp-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: #ffffff;
+      color: #181b22;
+      border: 2px solid #181b22;
+      border-radius: 9999px;
+      box-shadow: 2px 2px 0px #181b22;
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .btn-tp-nav:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px #181b22;
+      background: var(--accent-lime);
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 2px solid #181b22 !important;
+      background: #ffffff !important;
+    }
+  </style>
+
   </style>
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <link rel="canonical" href="https://rednote.tpgofighting.top/">
@@ -1361,6 +1524,9 @@
         <button class="btn-ghibli" onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})">
           <span><span class="ic ic-fish" aria-hidden="true"></span></span> <span>关于小鱼</span>
         </button>
+        <a href="https://tpgofighting.top/" class="btn-tp-nav" target="_blank" rel="noopener">
+          <span>← 返回 TP Space</span>
+        </a>
       </div>
     </div>
   </header>
@@ -1378,14 +1544,18 @@
 
   <!-- Site Footer -->
   <footer class="site-footer">
-    <div class="container footer-content">
-      <div class="footer-stamp"><span class="ic ic-sprout" aria-hidden="true"></span> TP的小红书 · 宫崎骏水彩手稿集</div>
-      <p class="footer-sub">
-        由早期吕小鱼傲娇毒舌护短精选 · 20 篇 AI 前沿实践、Vibe Coding 与产品求职实战手札。<br>
-        「笨蛋 TP，学了这些要是还做不出好产品，看我不拍你桌子！」
-      </p>
-      <div class="footer-credits">
-        Design & Curated with Studio Ghibli Aesthetic · Single-Page Application
+    <div class="container footer-content" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+      <div>
+        <div class="footer-stamp" style="font-size:1rem; font-weight:800; color:#181b22;">
+          TP SPACE<sup style="font-size:0.65rem; color:#f59e0b;">®</sup> · TP的小红书 AI 探索手札
+        </div>
+        <p class="footer-sub" style="margin-top:6px; font-size:0.82rem; color:#6b7280;">
+          © 2026 Tyler Tang (唐潘) · 保留所有权利 ｜ 20 篇小红书 AI 前沿手札与吕小鱼毒舌锐评
+        </p>
+      </div>
+      <div style="display:flex; gap:10px; align-items:center;">
+        <a href="https://tpgofighting.top/" class="btn-tp-nav" target="_blank" rel="noopener">TP Space 传送门</a>
+        <a href="https://github.com/TPGoFighting" class="btn-tp-nav" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </footer>
@@ -1955,5 +2125,6 @@
     }
   </script>
 <section data-tp-seo-context aria-label="本站简介" style="max-width:70ch;margin:2rem auto 1rem;padding:0 1rem;color:#6b7280;font-size:.72rem;line-height:1.6;opacity:.62;text-align:center"><p style="margin:0">TP 的小红书 · AI 探索手札：TP 的小红书 AI 探索手札，精选 AI 前沿内容，结合产品思考、工具实践与事实查证。</p></section>
+  <script src="https://tpgofighting.top/assets/tp-canvas-bg.js" defer></script>
 </body>
 </html>
